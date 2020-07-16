@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 
 class MultipleChoiceListFilter(admin.SimpleListFilter):
@@ -39,7 +40,7 @@ class MultipleChoiceListFilter(admin.SimpleListFilter):
         yield {
             'selected': self.value() is None,
             'query_string': changelist.get_query_string(remove=[self.parameter_name]),
-            'display': 'All',
+            'display': _('All'),
             'reset': True,
         }
         for lookup, title in self.lookup_choices:
