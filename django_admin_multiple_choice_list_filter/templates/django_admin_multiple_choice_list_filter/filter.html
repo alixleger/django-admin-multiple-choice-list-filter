@@ -8,7 +8,11 @@
         {% else %}
             <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}" style="display:inline">{{ choice.display }}</a>
             {% if choice.exclude_query_string %}
-                <a class="small" href="{{ choice.exclude_query_string|iriencode }}" style="display:inline">{% if choice.selected %} ({% trans 'include' %}) {% else %} ({% trans 'exclude' %}) {% endif %}</a>
+                {% if choice.selected %}
+                    <a class="small" href="{{ choice.exclude_query_string|iriencode }}" style="display:inline">({% trans 'exclude' %})</a>
+                {% else %}
+                    <a class="small" href="{{ choice.include_query_string|iriencode }}" style="display:inline">({% trans 'include' %})</a>
+                {% endif %}
             {% endif %}
         {% endif %}
     </li>
